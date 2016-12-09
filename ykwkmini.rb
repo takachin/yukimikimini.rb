@@ -193,10 +193,7 @@ def print_footer
 end
 
 def make_link(text)
-  content = nil
-  $db.transaction do
-    content = $db[text]
-  end
+  content = load_content(text)
   return "<a href=\"#{text}\">#{text}</a>" if /^(http|https|ftp):/ =~ text
   return "<a href=#{$thisurl}?#{text}>#{text}</a>" if content != nil
   "#{text}<a href=#{$thisurl}?mycmd=edit&mypage=#{text}>#{$editchar}</a>"
