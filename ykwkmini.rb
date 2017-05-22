@@ -82,7 +82,7 @@ def load_content(mypage)
   content
 end
 
-def wirte_content(mypage,content)
+def write_content(mypage,content)
   $db.transaction do
     $db[mypage] = content
   end
@@ -140,7 +140,7 @@ end
 
 def do_write(cgi)
   if (!cgi["mymsg"].empty?)
-      wirte_content(cgi["mypage"],cgi["mymsg"])
+      write_content(cgi["mypage"],cgi["mymsg"])
       content = load_content(cgi['mypage'])
       cgi.out("type" => "text/html" ,"charset" => "UTF-8") {
         print_header(cgi['mypage'],true) +
